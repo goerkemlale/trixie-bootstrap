@@ -36,19 +36,18 @@ sudo apt-fast -y install $INS_CODING $INS_LO $INS_CREATIVE $INS_GAMING $INS_MEDI
 # Apps that need manual care
 
 # Coding
-sys/coding/install_docker.sh
-sys/coding/install_asdf.sh
-sys/coding/install_neovim.sh
+coding/install_docker.sh
+coding/install_asdf.sh
+coding/install_neovim.sh
 
 # Gaming
-sys/gaming/install_steam.sh
-sys/gaming/install_discord.sh
+gaming/install_steam.sh
+gaming/install_discord.sh
 flatpak install flathub net.davidotek.pupgui2
 
 # Personal
-sys/install_logseq.sh
+install_logseq.sh
 
 # Music Production
-sys/install_music_prod.sh
+install_music_prod.sh
 
-echo "Publii: Need to install manually with packaged .deb install"
