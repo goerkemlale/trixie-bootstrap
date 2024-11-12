@@ -23,7 +23,7 @@ sudo apt-fast install -y linux-headers-amd64 nvidia-driver firmware-misc-nonfree
 
 # Apps
 INS_LO="libreoffice libreoffice-plasma libreoffice-kf5 libreoffice-qt5 libreoffice-script-provider-python libreoffice-sdbc-postgresql libreoffice-style-breeze libreoffice-dict-en libreoffice-dict-de libreoffice-dict-tr"
-INS_CODING="tmux gcc clang make dbeaver-ce "
+INS_CODING="tmux gcc clang make dbeaver-ce pipx"
 INS_CREATIVE="blender gimp obs-studio"
 INS_GAMING="wine lutris winetricks protontricks gamemode vkbasalt mangohud mangohud:i386 goverlay vulkan-tools"
 INS_MEDIA="mpv calibre qbittorrent"
@@ -44,9 +44,6 @@ coding/install_neovim.sh
 gaming/install_steam.sh
 gaming/install_discord.sh
 flatpak install flathub net.davidotek.pupgui2
-
-# Personal
-install_logseq.sh
 
 # Music Production
 install_music_prod.sh
