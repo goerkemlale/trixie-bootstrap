@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Change Working Directory for external sh call
+cd "$(dirname "$0")"
+
 # Function to check if user wants to continue
 ask_for_confirmation() {
     echo "Type 'yes' to continue, or anything else to exit:"
@@ -53,17 +56,29 @@ add_audio_limits() {
 echo "Installing music production suite. Continue?"
 ask_for_confirmation
 
-# Change Working Directory for external sh call
-cd "$(dirname "$0")"
+# Install audio interface
+echo "Installing PipeWire"
+sudo apt-fast install alsa-utils pipewire pipewire-audio pipewire-audio-client-libraries pipewire-alsa pipewire-jack wireplumber
 
-# Status of the setup: rtcqs
-# Check the output of the Python script. It will guide you.
-#git clone https://codeberg.org/rtcqs/rtcqs.git
-#cd rtcqs
-#./src/rtcqs/rtcqs.py
+# Tell all apps that use JACK to now use the Pipewire JACK
+sudo "Configuring PipeWire to fool JACK programs"
+sudo cp /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/
+sudo ldconfig
+
+# CPU Options
+sudo echo 'vm.swappiness=10' >> /etc/sysctl.d/99-sysctl.conf
+
+echo "Optional:"
+echo "make sure in /etc/default/grub 'preempt', 'threadirqs' and 'governor' same as below:"
+echo 'GRUB_CMDLINE_LINUX="preempt=full threadirqs cpufreq.default_governor=performance"'
+echo "---------------------------------------------------------------------------------"
+echo "Current status of the grub file at mentioned line:"
+grep GRUB_CMDLINE_LINUX= /etc/default/grub
+echo "---------------------------------------------------------------------------------"
+echo "Checked it. Then, add that line and run sudo update-grub. Type yes if you completed this step."
+ask_for_confirmation
 
 # Audio Group with RT
-
 echo "Check if following lines are present:"
 echo "@audio   -  rtprio     95"
 echo "@audio   -  memlock    unlimited"
@@ -123,6 +138,11 @@ for choice in "${choices[@]}"; do
     esac
 done
 
+# Status of the setup: rtcqs
+# Check the output of the Python script. It will guide you.
+git clone https://codeberg.org/rtcqs/rtcqs.git
+cd rtcqs
+./src/rtcqs/rtcqs.py
 
 echo "Need to install BBC Symphony and other Spitfire LABS plugins. Loginware."
 echo "Need to install Virtual Playing Orchestra. OneDrive needs auth"
