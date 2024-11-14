@@ -28,10 +28,10 @@ INS_CREATIVE="blender gimp obs-studio"
 INS_GAMING="wine lutris winetricks protontricks gamemode vkbasalt mangohud mangohud:i386 goverlay vulkan-tools"
 INS_MEDIA="mpv calibre qbittorrent"
 INS_PERSONAL="keepassxc"
-INS_MUSIC="ardour audacity  samplv1-lv2"
+INS_MUSIC="ardour audacity"
 INS_TRAN="omegat okapi"
 
-sudo apt-fast -y install $INS_CODING $INS_LO $INS_CREATIVE $INS_GAMING $INS_MEDIA $INS_PERSONAL $INS_MUSIC
+sudo apt-fast -y install $INS_CODING $INS_LO $INS_CREATIVE $INS_GAMING $INS_MEDIA $INS_PERSONAL $INS_MUSIC $INS_TRAN
 
 # Apps that need manual care
 
