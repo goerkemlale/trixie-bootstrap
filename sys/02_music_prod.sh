@@ -52,7 +52,6 @@ add_audio_limits() {
     echo "$USER is now in audio group"
 }
 
-
 echo "Installing music production suite. Continue?"
 ask_for_confirmation
 
@@ -92,7 +91,7 @@ add_audio_limits
 # Ardour
 echo "Creating plugin folder in $HOME/.daw"
 echo "Do not forget to include these folders in Ardour"
-mkdir $HOME/.daw/vst3/ $HOME/.daw/lv2/ $HOME/.daw/vst/ $HOME/.daw/.clap/
+mkdir -p $HOME/.daw/vst3/ $HOME/.daw/lv2/ $HOME/.daw/vst/ $HOME/.daw/.clap/
 
 # Plugins
 echo "Select programs to install"
